@@ -6,10 +6,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import tv.codely.shared.domain.DomainError;
-import tv.codely.shared.domain.Utils;
-import tv.codely.shared.domain.bus.command.CommandHandlerExecutionError;
-import tv.codely.shared.domain.bus.query.QueryHandlerExecutionError;
+import  com.mindata.searchservice.shared.domain.DomainError;
+import  com.mindata.searchservice.shared.domain.Utils;
+import  com.mindata.searchservice.shared.domain.bus.command.CommandHandlerExecutionError;
+import  com.mindata.searchservice.shared.domain.bus.query.QueryHandlerExecutionError;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,6 +1,7 @@
 package com.mindata.searchservice.shared.domain.criteria;
 
-import tv.codely.shared.domain.StringValueObject;
+
+import com.mindata.searchservice.shared.domain.StringValueObject;
 
 public final class OrderBy extends StringValueObject {
     public OrderBy(String value) {

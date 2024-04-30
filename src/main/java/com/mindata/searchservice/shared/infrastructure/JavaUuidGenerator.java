@@ -1,7 +1,7 @@
 package com.mindata.searchservice.shared.infrastructure;
 
-import tv.codely.shared.domain.Service;
-import tv.codely.shared.domain.UuidGenerator;
+import com.mindata.searchservice.shared.domain.Service;
+import com.mindata.searchservice.shared.domain.UuidGenerator;
 
 import java.util.UUID;
 
