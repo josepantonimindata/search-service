@@ -3,14 +3,11 @@ package com.mindata.searchservice.search.domain;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public final class CheckIn {
+public final class CheckOut {
 
     private LocalDate value;
 
-    public CheckIn(LocalDate value) {
-        if (value == null) {
-            throw new IllegalArgumentException("CheckIn value cannot be null");
-        }
+    public CheckOut(LocalDate value) {
         this.value = value;
     }
 
@@ -18,18 +15,17 @@ public final class CheckIn {
         return value;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CheckIn checkIn = (CheckIn) o;
-        return value.equals(checkIn.value);
+        CheckOut checkOut = (CheckOut) o;
+        return Objects.equals(value, checkOut.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hashCode(value);
     }
+
 }

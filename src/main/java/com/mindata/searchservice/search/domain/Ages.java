@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Ages {
+public final class Ages {
 
     private List<Integer> ages;
+    private List<String> agesFormated;
 
     public Ages(List<Integer> ages) {
         this.ages = ages;
+        this.agesFormated = getAgesFormated();
     }
 
     public List<Integer> getAges() {
@@ -41,6 +43,6 @@ public class Ages {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ages);
+        return Objects.hash(agesFormated);
     }
 }
