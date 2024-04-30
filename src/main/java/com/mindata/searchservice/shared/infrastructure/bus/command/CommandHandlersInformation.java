@@ -1,22 +1,22 @@
 package com.mindata.searchservice.shared.infrastructure.bus.command;
 
-import com.mindata.searchservice.shared.domain.Service;
 import com.mindata.searchservice.shared.domain.bus.command.Command;
 import com.mindata.searchservice.shared.domain.bus.command.CommandHandler;
 import com.mindata.searchservice.shared.domain.bus.command.CommandNotRegisteredError;
 import org.reflections.Reflections;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.Set;
 
-@Service
+@Component
 public final class CommandHandlersInformation {
     HashMap<Class<? extends Command>, Class<? extends CommandHandler>> indexedCommandHandlers;
 
     public CommandHandlersInformation() {
-        Reflections                          reflections = new Reflections("com.mindata.searchservice");
-        Set<Class<? extends CommandHandler>> classes     = reflections.getSubTypesOf(CommandHandler.class);
+        Reflections reflections = new Reflections("com.mindata.searchservice");
+        Set<Class<? extends CommandHandler>> classes = reflections.getSubTypesOf(CommandHandler.class);
 
         indexedCommandHandlers = formatHandlers(classes);
     }
@@ -37,7 +37,7 @@ public final class CommandHandlersInformation {
         HashMap<Class<? extends Command>, Class<? extends CommandHandler>> handlers = new HashMap<>();
 
         for (Class<? extends CommandHandler> handler : commandHandlers) {
-            ParameterizedType        paramType    = (ParameterizedType) handler.getGenericInterfaces()[0];
+            ParameterizedType paramType = (ParameterizedType) handler.getGenericInterfaces()[0];
             Class<? extends Command> commandClass = (Class<? extends Command>) paramType.getActualTypeArguments()[0];
 
             handlers.put(commandClass, handler);

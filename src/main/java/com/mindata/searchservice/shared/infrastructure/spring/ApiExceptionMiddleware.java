@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public final class ApiExceptionMiddleware implements Filter {
-    private RequestMappingHandlerMapping mapping;
+    private final RequestMappingHandlerMapping mapping;
 
     public ApiExceptionMiddleware(RequestMappingHandlerMapping mapping) {
         this.mapping = mapping;
