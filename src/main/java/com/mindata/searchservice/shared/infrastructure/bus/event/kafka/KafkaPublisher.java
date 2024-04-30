@@ -14,4 +14,8 @@ public final class KafkaPublisher {
     public KafkaPublisher(KafkaTemplate template) {
         this.template = template;
     }
+
+    public void publish(String event) {
+//        template.
+    }
 }
