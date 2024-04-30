@@ -1,20 +1,20 @@
 package com.mindata.searchservice.shared.infrastructure.bus.command;
 
-import com.mindata.searchservice.shared.domain.Service;
 import com.mindata.searchservice.shared.domain.bus.command.Command;
 import com.mindata.searchservice.shared.domain.bus.command.CommandBus;
 import com.mindata.searchservice.shared.domain.bus.command.CommandHandler;
 import com.mindata.searchservice.shared.domain.bus.command.CommandHandlerExecutionError;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public final class InMemoryCommandBus implements CommandBus {
     private final CommandHandlersInformation information;
-    private final ApplicationContext         context;
+    private final ApplicationContext context;
 
     public InMemoryCommandBus(CommandHandlersInformation information, ApplicationContext context) {
         this.information = information;
-        this.context     = context;
+        this.context = context;
     }
 
     @Override
