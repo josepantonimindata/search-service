@@ -7,8 +7,20 @@ public final class CheckOut {
 
     private LocalDate value;
 
-    public CheckOut(LocalDate value) {
-        this.value = value;
+    public CheckOut(String value) {
+        ensureValueIsDefined(value);
+
+        try {
+            this.value = LocalDate.parse(value);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid date format");
+        }
+    }
+
+    private void ensureValueIsDefined(String value) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException("CheckOut value cannot be null or empty");
+        }
     }
 
     public LocalDate getValue() {

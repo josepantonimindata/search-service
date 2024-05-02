@@ -5,21 +5,21 @@ import java.util.UUID;
 
 public final class HotelId {
 
-    private UUID value;
+    private String value;
 
-    public HotelId(UUID value) {
-        ensureValidVIsDefined(value);
+    public HotelId(String value) {
+        ensureValueIsDefined(value);
 
         this.value = value;
     }
 
-    private void ensureValidVIsDefined(UUID value) {
-        if (value == null ) {
-            throw new IllegalArgumentException("Value cannot be null");
+    private void ensureValueIsDefined(String value) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException("Value cannot be null or empty");
         }
     }
 
-    public UUID getValue() {
+    public String getValue() {
         return value;
     }
 

@@ -20,7 +20,7 @@ public final class Search {
         this.checkIn = checkIn;
     }
 
-    public UUID getHotelId() {
+    public String getHotelId() {
         return hotelId.getValue();
     }
 
