@@ -26,8 +26,10 @@ public final class Ages {
                 agesFormated.add("Bebe");
             }else if (n >= 3 && n < 12){
                 agesFormated.add("Ninyo");
-            }else {
+            }else if (n >= 12 && n < 120){
                 agesFormated.add("Adulto");
+            } else {
+                throw new IllegalArgumentException("Invalid age");
             }
         });
         return agesFormated;

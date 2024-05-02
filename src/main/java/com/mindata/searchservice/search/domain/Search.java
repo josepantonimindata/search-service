@@ -13,6 +13,7 @@ public final class Search {
     private Ages ages;
 
     public Search(HotelId hotelId, Ages ages, CheckOut checkOut, CheckIn checkIn) {
+        isCheckInBeforeCheckOut(checkIn.getValue(), checkOut.getValue());
         this.hotelId = hotelId;
         this.ages = ages;
         this.checkOut = checkOut;
@@ -46,5 +47,12 @@ public final class Search {
     @Override
     public int hashCode() {
         return Objects.hash(hotelId, checkIn, checkOut, ages);
+    }
+
+    // Comparar las fechas del CheckIn y CheckOut
+    public void isCheckInBeforeCheckOut(LocalDate checkIn, LocalDate checkOut) {
+        if (checkIn.isBefore(checkOut)) {
+            throw new IllegalArgumentException("CheckIn date must be before CheckOut date");
+        }
     }
 }

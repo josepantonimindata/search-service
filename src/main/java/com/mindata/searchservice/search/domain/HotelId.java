@@ -23,9 +23,6 @@ public final class HotelId {
         return value;
     }
 
-    public void setValue(UUID value) {
-        this.value = value;
-    }
 
     @Override
     public boolean equals(Object o) {
