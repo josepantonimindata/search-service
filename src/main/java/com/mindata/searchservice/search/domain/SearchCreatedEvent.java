@@ -14,8 +14,8 @@ public final class SearchCreatedEvent extends DomainEvent {
     private final String hash;
     private final List<Integer> ages;
 
-    public SearchCreatedEvent(String aggregateId, String eventId, String occurredOn, String hotelId, String checkIn, String checkOut, String hash, List<Integer> ages) {
-        super(aggregateId, eventId, occurredOn);
+    public SearchCreatedEvent(String aggregateId, String hotelId, String checkIn, String checkOut, String hash, List<Integer> ages) {
+        super(aggregateId);
 
         this.hotelId = hotelId;
         this.checkIn = checkIn;
@@ -49,8 +49,6 @@ public final class SearchCreatedEvent extends DomainEvent {
     ) {
         return new SearchCreatedEvent(
                 aggregateId,
-                eventId,
-                occurredOn,
                 (String) body.get("hotelId"),
                 (String) body.get("checkIn"),
                 (String) body.get("checkOut"),

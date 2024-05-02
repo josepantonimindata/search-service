@@ -1,39 +1,65 @@
 package com.mindata.searchservice.search.domain;
 
-import java.time.LocalDate;
+import com.mindata.searchservice.shared.domain.AggregateRoot;
+
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
-public final class Search {
-
+public final class Search extends AggregateRoot {
+    private SearchId id;
     private HotelId hotelId;
     private CheckIn checkIn;
     private CheckOut checkOut;
-    private Ages ages;
+    private List<Age> ages;
 
-    public Search(HotelId hotelId, Ages ages, CheckOut checkOut, CheckIn checkIn) {
-        isCheckInBeforeCheckOut(checkIn.getValue(), checkOut.getValue());
+    public Search(SearchId id, HotelId hotelId, CheckIn checkIn, CheckOut checkOut, List<Age> ages) {
+        this.id = id;
         this.hotelId = hotelId;
         this.ages = ages;
         this.checkOut = checkOut;
         this.checkIn = checkIn;
     }
 
-    public String getHotelId() {
-        return hotelId.getValue();
+    public static Search create(String searchId, String searchHotelId, String checkIn, String checkOut, List<Integer> searchAges) {
+        var searchCheckIn = new CheckIn(checkIn);
+        var searchChekOut = new CheckOut(checkOut);
+
+        if (searchCheckIn.compareTo(searchChekOut) > 0) {
+            throw new IllegalArgumentException("Checkout can not be before checkin");
+        }
+        var id = new SearchId(searchId);
+        var hotellid = new HotelId(searchHotelId);
+        var ages = searchAges.stream().map(Age::new).toList();
+
+        var search = new Search(id, hotellid, searchCheckIn, searchChekOut, ages);
+
+        search.record(new SearchCreatedEvent(
+                id.value(),
+                search.hotelId.getValue(),
+                search.checkIn.value(),
+                search.checkOut.value(),
+                Integer.toString(search.hashCode()),
+                search.ages.stream().map(Age::value).toList()
+        ));
+
+        return search;
+
     }
 
-    public LocalDate getCheckIn() {
-        return checkIn.getValue();
+    public HotelId hotelId() {
+        return hotelId;
     }
 
-    public LocalDate getCheckOut() {
-        return checkOut.getValue();
+    public CheckIn checkIn() {
+        return checkIn;
     }
 
-    public List<String> getAges() {
-        return ages.getAgesFormated();
+    public CheckOut checkOut() {
+        return checkOut;
+    }
+
+    public List<Age> ages() {
+        return ages;
     }
 
     @Override
@@ -46,13 +72,10 @@ public final class Search {
 
     @Override
     public int hashCode() {
-        return Objects.hash(hotelId, checkIn, checkOut, ages);
-    }
-
-    // Comparar las fechas del CheckIn y CheckOut
-    public void isCheckInBeforeCheckOut(LocalDate checkIn, LocalDate checkOut) {
-        if (checkIn.isBefore(checkOut)) {
-            throw new IllegalArgumentException("CheckIn date must be before CheckOut date");
-        }
+        return Objects.hash(
+                hotelId,
+                checkIn,
+                checkOut,
+                ages.stream().sorted().map(Age::personType));
     }
 }

@@ -1,5 +1,6 @@
 package com.mindata.searchservice.search.application;
 
+import com.mindata.searchservice.search.domain.Search;
 import com.mindata.searchservice.shared.domain.AggregateRoot;
 import com.mindata.searchservice.shared.domain.bus.command.CommandHandler;
 import com.mindata.searchservice.shared.domain.bus.event.EventBus;
@@ -14,7 +15,13 @@ public final class SearchCommandHandler implements CommandHandler<SearchCommand>
 
     @Override
     public void handle(SearchCommand command) {
-        AggregateRoot search = null; // Search.create()
+        var search =  Search.create(
+                command.searchId(),
+                command.hotelId(),
+                command.checkIn(),
+                command.checkOut(),
+                command.ages()
+        );
 
         final var events = search.pullDomainEvents();
         bus.publish(events);
