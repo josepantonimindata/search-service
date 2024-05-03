@@ -7,22 +7,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public final class SearchCommandHandler implements CommandHandler<SearchCommand> {
-    
-    private final EventBus bus;
-    
-    public SearchCommandHandler(EventBus bus) {this.bus = bus;}
-    
+    private NewSearchService newSearchService;
+
+    public SearchCommandHandler(NewSearchService newSearchService) {
+        this.newSearchService = newSearchService;
+    }
+
+
     @Override
     public void handle(SearchCommand command) {
-        var search = Search.create(
-            command.searchId(),
-            command.hotelId(),
-            command.checkIn(),
-            command.checkOut(),
-            command.ages()
+        newSearchService.newSearch(
+                command.searchId(),
+                command.hotelId(),
+                command.checkIn(),
+                command.checkOut(),
+                command.ages()
         );
-        
-        final var events = search.pullDomainEvents();
-        bus.publish(events);
     }
 }
