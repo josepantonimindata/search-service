@@ -21,35 +21,32 @@ public final class Search extends AggregateRoot {
     }
     
     public static Search create(
-        String searchId,
-        String searchHotelId,
-        String checkIn,
-        String checkOut,
-        List<Integer> searchAges
+        String searchId, String searchHotelId, String checkIn, String checkOut, List<Integer> searchAges
     ) {
         var searchCheckIn = new CheckIn(checkIn);
-        var searchChekOut = new CheckOut(checkOut);
+        var searchCheckOut = new CheckOut(checkOut);
         
-        if (searchCheckIn.compareTo(searchChekOut) > 0) {
+        if (searchCheckIn.compareTo(searchCheckOut) > 0) {
             throw new IllegalArgumentException("Checkout can not be before checkin");
         }
         var id = new SearchId(searchId);
-        var hotellid = new HotelId(searchHotelId);
+        var hotelId = new HotelId(searchHotelId);
         var ages = searchAges.stream().map(Age::new).toList();
         
-        var search = new Search(id, hotellid, searchCheckIn, searchChekOut, ages);
+        var search = new Search(id, hotelId, searchCheckIn, searchCheckOut, ages);
         
-        search.record(new SearchCreatedEvent(
-            id.value(),
+        search.record(new SearchCreatedEvent(id.value(),
             search.hotelId.getValue(),
             search.checkIn.value(),
             search.checkOut.value(),
-            Integer.toString(search.hashCode()),
-            search.ages.stream().map(Age::value).toList()
-        ));
+            Integer.toString(search.searchRequestHash()),
+            search.ages.stream().map(Age::value).toList()));
         
         return search;
-        
+    }
+    
+    public SearchId searchId() {
+        return id;
     }
     
     public HotelId hotelId() {
@@ -73,17 +70,28 @@ public final class Search extends AggregateRoot {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Search search = (Search) o;
-        return Objects.equals(hotelId, search.hotelId) && Objects.equals(checkIn, search.checkIn) && Objects.equals(
-            checkOut,
+        return Objects.equals(id, search.id) && Objects.equals(hotelId,
+            search.hotelId) && Objects.equals(checkIn, search.checkIn) && Objects.equals(checkOut,
             search.checkOut) && Objects.equals(ages, search.ages);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            hotelId,
-            checkIn,
-            checkOut,
-            ages.stream().sorted().map(Age::personType));
+        return Objects.hash(id, hotelId, checkIn, checkOut, ages);
+    }
+    
+    @Override
+    public String toString() {
+        return "Search{" +
+               "id=" + id +
+               ", hotelId=" + hotelId +
+               ", checkIn=" + checkIn +
+               ", checkOut=" + checkOut +
+               ", ages=" + ages +
+               '}';
+    }
+    
+    public int searchRequestHash() {
+        return Objects.hash(hotelId, checkIn, checkOut, ages.stream().sorted().map(Age::personType).toList());
     }
 }

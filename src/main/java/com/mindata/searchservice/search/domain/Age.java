@@ -1,6 +1,9 @@
 package com.mindata.searchservice.search.domain;
 
-public final class Age {
+import java.util.Objects;
+
+public final class Age implements Comparable<Age> {
+    
     public enum PersonType {
         BABY,
         CHILD,
@@ -34,5 +37,23 @@ public final class Age {
     
     public Integer value() {
         return value;
+    }
+    
+    @Override
+    public int compareTo(Age o) {
+        return Integer.compare(value, o.value);
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Age age = (Age) o;
+        return Objects.equals(value, age.value);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }

@@ -1,5 +1,6 @@
 package com.mindata.searchservice.search.domain;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public final class SearchId {
@@ -16,5 +17,18 @@ public final class SearchId {
     
     public String value() {
         return value.toString();
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SearchId searchId = (SearchId) o;
+        return Objects.equals(value, searchId.value);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }
