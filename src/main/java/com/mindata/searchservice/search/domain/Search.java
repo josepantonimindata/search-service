@@ -26,6 +26,10 @@ public final class Search extends AggregateRoot {
         var searchCheckIn = new CheckIn(checkIn);
         var searchCheckOut = new CheckOut(checkOut);
         
+        if (searchAges == null) {
+            throw new IllegalArgumentException("Invalid ages, MUST be NOT null");
+        }
+        
         if (searchCheckIn.compareTo(searchCheckOut) > 0) {
             throw new IllegalArgumentException("Checkout can not be before checkin");
         }

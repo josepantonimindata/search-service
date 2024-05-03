@@ -67,6 +67,62 @@ public class SearchTests {
                 TODAY,
                 TOMORROW,
                 List.of(1, 20, 30, 13, 4)
+            )),
+            () -> assertThrows(IllegalArgumentException.class, () -> Search.create(
+                "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
+                "1",
+                TODAY,
+                TOMORROW,
+                List.of(200, 20, 30, 13, 4)
+            )),
+            () -> assertThrows(IllegalArgumentException.class, () -> Search.create(
+                "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
+                "1",
+                TODAY,
+                TOMORROW,
+                List.of(-100, 20, 30, 13, 4)
+            )),
+            () -> assertThrows(IllegalArgumentException.class, () -> Search.create(
+                "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
+                "",
+                TODAY,
+                TOMORROW,
+                List.of(1, 20, 30, 13, 4)
+            )),
+            () -> assertThrows(IllegalArgumentException.class, () -> Search.create(
+                "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
+                null,
+                TODAY,
+                TOMORROW,
+                List.of(1, 20, 30, 13, 4)
+            )),
+            () -> assertThrows(IllegalArgumentException.class, () -> Search.create(
+                null,
+                "null",
+                TODAY,
+                TOMORROW,
+                List.of(1, 20, 30, 13, 4)
+            )),
+            () -> assertThrows(IllegalArgumentException.class, () -> Search.create(
+                "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
+                "1",
+                null,
+                TOMORROW,
+                List.of(1, 20, 30, 13, 4)
+            )),
+            () -> assertThrows(IllegalArgumentException.class, () -> Search.create(
+                "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
+                "1",
+                TODAY,
+                null,
+                List.of(1, 20, 30, 13, 4)
+            )),
+            () -> assertThrows(IllegalArgumentException.class, () -> Search.create(
+                "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
+                "1",
+                TODAY,
+                TOMORROW,
+                null
             ))
         );
     }

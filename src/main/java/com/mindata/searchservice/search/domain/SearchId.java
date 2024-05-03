@@ -8,6 +8,9 @@ public final class SearchId {
     
     
     public SearchId(String value) {
+        if (value == null) {
+            throw new IllegalArgumentException("Invalid Search id must be NOT null");
+        }
         try {
             this.value = UUID.fromString(value);
         } catch (IllegalArgumentException e) {

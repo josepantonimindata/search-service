@@ -8,8 +8,7 @@ import java.util.List;
 
 import static com.mindata.searchservice.search.domain.TimeVariables.TODAY;
 import static com.mindata.searchservice.search.domain.TimeVariables.TOMORROW;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SearchCreatedEventTests {
     
@@ -33,7 +32,11 @@ public class SearchCreatedEventTests {
             List.of()
         );
         
-        assertNotEquals(event, diffEvent);
+        assertAll("Are Not Equal",
+            () -> assertNotEquals(event, diffEvent),
+            () -> assertNotEquals(event.eventId(), diffEvent.eventId()),
+            () -> assertNotEquals(event.hashCode(), diffEvent.hashCode())
+        );
     }
     
     @Test
@@ -51,8 +54,10 @@ public class SearchCreatedEventTests {
             aggregateId, serializedData, originalEvent.eventId(), originalEvent.occurredOn()
         );
         
-        System.out.println(originalEvent.eventId());
-        System.out.println(deserializedEvent.eventId());
-        assertEquals(originalEvent, deserializedEvent);
+        assertAll("Are Equals",
+            () -> assertEquals(originalEvent, deserializedEvent),
+            () -> assertEquals(originalEvent.eventId(), deserializedEvent.eventId()),
+            () -> assertEquals(originalEvent.hashCode(), deserializedEvent.hashCode())
+        );
     }
 }
