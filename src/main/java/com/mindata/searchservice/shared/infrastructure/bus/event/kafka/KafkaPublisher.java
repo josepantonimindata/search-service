@@ -10,14 +10,14 @@ import java.io.Serializable;
 @Service
 public final class KafkaPublisher {
     private final KafkaTemplate<String, Serializable> template;
-
+    
     public KafkaPublisher(KafkaTemplate<String, Serializable> template) {
         this.template = template;
     }
-
+    
     public void publish(DomainEvent event, String topic) {
         final var serialized = DomainEventJsonSerializer.serialize(event);
-
+        
         template.send(topic, serialized);
     }
 }

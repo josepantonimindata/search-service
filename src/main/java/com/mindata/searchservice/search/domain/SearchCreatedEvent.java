@@ -13,22 +13,29 @@ public final class SearchCreatedEvent extends DomainEvent {
     private final String checkOut;
     private final String hash;
     private final List<Integer> ages;
-
-    public SearchCreatedEvent(String aggregateId, String hotelId, String checkIn, String checkOut, String hash, List<Integer> ages) {
+    
+    public SearchCreatedEvent(
+        String aggregateId,
+        String hotelId,
+        String checkIn,
+        String checkOut,
+        String hash,
+        List<Integer> ages
+    ) {
         super(aggregateId);
-
+        
         this.hotelId = hotelId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.hash = hash;
         this.ages = ages;
     }
-
+    
     @Override
     public String eventName() {
         return "hotel_availability_searches";
     }
-
+    
     @Override
     public HashMap<String, Serializable> toPrimitives() {
         return new HashMap<>() {{
@@ -39,21 +46,21 @@ public final class SearchCreatedEvent extends DomainEvent {
             put("ages", ages.toArray());
         }};
     }
-
+    
     @Override
     public DomainEvent fromPrimitives(
-            String aggregateId,
-            HashMap<String, Serializable> body,
-            String eventId,
-            String occurredOn
+        String aggregateId,
+        HashMap<String, Serializable> body,
+        String eventId,
+        String occurredOn
     ) {
         return new SearchCreatedEvent(
-                aggregateId,
-                (String) body.get("hotelId"),
-                (String) body.get("checkIn"),
-                (String) body.get("checkOut"),
-                (String) body.get("hash"),
-                Arrays.stream(((int[]) body.get("ages"))).boxed().toList()
+            aggregateId,
+            (String) body.get("hotelId"),
+            (String) body.get("checkIn"),
+            (String) body.get("checkOut"),
+            (String) body.get("hash"),
+            Arrays.stream(((int[]) body.get("ages"))).boxed().toList()
         );
     }
 }

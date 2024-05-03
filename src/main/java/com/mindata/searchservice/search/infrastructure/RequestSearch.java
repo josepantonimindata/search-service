@@ -1,4 +1,3 @@
-
 package com.mindata.searchservice.search.infrastructure;
 
 import java.util.List;

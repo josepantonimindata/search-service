@@ -16,15 +16,15 @@ import java.util.UUID;
 
 @RestController
 public final class SearchPostController extends ApiController {
-
+    
     public SearchPostController(QueryBus queryBus, CommandBus commandBus) {
         super(queryBus, commandBus);
     }
-
+    
     @PostMapping("/search")
     public ResponseEntity<SearchResponse> search(@RequestBody RequestSearch request) {
         final String searchId = UUID.randomUUID().toString();
-
+        
         this.dispatch(new SearchCommand(
             searchId,
             request.hotelId(),
@@ -32,11 +32,11 @@ public final class SearchPostController extends ApiController {
             request.checkOut(),
             request.ages()
         ));
-
+        
         return new ResponseEntity<>(new SearchResponse(searchId), HttpStatus.PROCESSING);
     }
-
-
+    
+    
     @Override
     public HashMap<Class<? extends DomainError>, HttpStatus> errorMapping() {
         return new HashMap<>();

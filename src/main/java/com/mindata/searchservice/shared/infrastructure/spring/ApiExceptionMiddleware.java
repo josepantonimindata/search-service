@@ -1,15 +1,15 @@
 package com.mindata.searchservice.shared.infrastructure.spring;
 
+import com.mindata.searchservice.shared.domain.DomainError;
+import com.mindata.searchservice.shared.domain.Utils;
+import com.mindata.searchservice.shared.domain.bus.command.CommandHandlerExecutionError;
+import com.mindata.searchservice.shared.domain.bus.query.QueryHandlerExecutionError;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import  com.mindata.searchservice.shared.domain.DomainError;
-import  com.mindata.searchservice.shared.domain.Utils;
-import  com.mindata.searchservice.shared.domain.bus.command.CommandHandlerExecutionError;
-import  com.mindata.searchservice.shared.domain.bus.query.QueryHandlerExecutionError;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,26 +18,26 @@ import java.util.Objects;
 
 public final class ApiExceptionMiddleware implements Filter {
     private final RequestMappingHandlerMapping mapping;
-
+    
     public ApiExceptionMiddleware(RequestMappingHandlerMapping mapping) {
         this.mapping = mapping;
     }
-
+    
     @Override
     public void doFilter(
         ServletRequest request,
         ServletResponse response,
         FilterChain chain
     ) throws ServletException {
-        HttpServletRequest  httpRequest  = ((HttpServletRequest) request);
+        HttpServletRequest httpRequest = ((HttpServletRequest) request);
         HttpServletResponse httpResponse = ((HttpServletResponse) response);
-
+        
         try {
             Object possibleController = (
                 (HandlerMethod) Objects.requireNonNull(
                     mapping.getHandler(httpRequest)).getHandler()
             ).getBean();
-
+            
             try {
                 chain.doFilter(request, response);
             } catch (Exception exception) {
@@ -49,7 +49,7 @@ public final class ApiExceptionMiddleware implements Filter {
             throw new ServletException(e);
         }
     }
-
+    
     private void handleCustomError(
         ServletResponse response,
         HttpServletResponse httpResponse,
@@ -63,11 +63,11 @@ public final class ApiExceptionMiddleware implements Filter {
             exception.getCause() instanceof QueryHandlerExecutionError
         )
             ? exception.getCause().getCause() : exception.getCause();
-
-        int    statusCode   = statusFor(errorMapping, error);
-        String errorCode    = errorCodeFor(error);
+        
+        int statusCode = statusFor(errorMapping, error);
+        String errorCode = errorCodeFor(error);
         String errorMessage = error.getMessage();
-
+        
         httpResponse.reset();
         httpResponse.setHeader("Content-Type", "application/json");
         httpResponse.setStatus(statusCode);
@@ -79,15 +79,15 @@ public final class ApiExceptionMiddleware implements Filter {
         ));
         writer.close();
     }
-
+    
     private String errorCodeFor(Throwable error) {
         if (error instanceof DomainError) {
             return ((DomainError) error).errorCode();
         }
-
+        
         return Utils.toSnake(error.getClass().toString());
     }
-
+    
     private int statusFor(HashMap<Class<? extends DomainError>, HttpStatus> errorMapping, Throwable error) {
         return errorMapping.getOrDefault(error.getClass(), HttpStatus.INTERNAL_SERVER_ERROR).value();
     }

@@ -3,9 +3,9 @@ package com.mindata.searchservice.search.domain;
 import java.util.UUID;
 
 public final class SearchId {
-    private UUID value;
-
-
+    private final UUID value;
+    
+    
     public SearchId(String value) {
         try {
             this.value = UUID.fromString(value);
@@ -13,7 +13,7 @@ public final class SearchId {
             throw new IllegalArgumentException("Invalid Search id fromat (UUID)");
         }
     }
-
+    
     public String value() {
         return value.toString();
     }

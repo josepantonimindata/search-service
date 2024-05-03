@@ -1,4 +1,4 @@
-package com.mindata.searchservice.config;
+package com.mindata.searchservice.shared.infrastructure.spring.config;
 
 import com.mindata.searchservice.shared.infrastructure.spring.ApiExceptionMiddleware;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -9,15 +9,15 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 @Configuration
 public class SearchApiConfig {
     private final RequestMappingHandlerMapping mapping;
-
+    
     public SearchApiConfig(RequestMappingHandlerMapping mapping) {this.mapping = mapping;}
-
+    
     @Bean
     public FilterRegistrationBean<ApiExceptionMiddleware> apiExceptionMiddleware() {
         FilterRegistrationBean<ApiExceptionMiddleware> registrationBean = new FilterRegistrationBean<>();
-
+        
         registrationBean.setFilter(new ApiExceptionMiddleware(mapping));
-
+        
         return registrationBean;
     }
 }
