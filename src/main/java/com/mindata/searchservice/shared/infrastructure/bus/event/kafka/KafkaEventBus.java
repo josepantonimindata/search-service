@@ -8,18 +8,17 @@ import java.util.List;
 
 @Service
 public final class KafkaEventBus implements EventBus {
-    
     private final KafkaPublisher kafkaPublisher;
-    
+
     public KafkaEventBus(KafkaPublisher kafkaPublisher) {
         this.kafkaPublisher = kafkaPublisher;
     }
-    
+
     @Override
     public void publish(List<DomainEvent> events) {
         events.forEach(this::publish);
     }
-    
+
     private void publish(DomainEvent domainEvent) {
         kafkaPublisher.publish(domainEvent, domainEvent.eventName());
     }
