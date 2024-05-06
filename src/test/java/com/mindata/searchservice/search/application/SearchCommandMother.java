@@ -30,6 +30,17 @@ public final class SearchCommandMother {
                 AgeMother.randomList().stream().map(Age::value).toList()
         );
     }
+
+    public static SearchCommand randomWithId(String id) {
+        return create(
+                SearchIdMother.create(id).value(),
+                HotelIdMother.random().value(),
+                CheckInMother.today().value(),
+                CheckOutMother.tomorrow().value(),
+                AgeMother.randomList().stream().map(Age::value).toList()
+        );
+    }
+
     // TODO: Create a Random String Generator
     public static SearchCommand randomInvalid() {
         return create(

@@ -59,11 +59,13 @@ public final class SearchCreatedEvent extends DomainEvent {
     @Override
     public HashMap<String, Serializable> toPrimitives() {
         return new HashMap<>() {{
-            put("hotelId", hotelId);
-            put("checkIn", checkIn);
-            put("checkOut", checkOut);
+            put("search", new HashMap<>(){{
+                put("hotelId", hotelId);
+                put("checkIn", checkIn);
+                put("checkOut", checkOut);
+                put("ages", ages.toArray(new Integer[0]));
+            }});
             put("hash", hash);
-            put("ages", ages.toArray(new Integer[0]));
         }};
     }
 
@@ -74,15 +76,16 @@ public final class SearchCreatedEvent extends DomainEvent {
         String eventId,
         String occurredOn
     ) {
+        var map = (HashMap<String, Serializable>)  body.get("search");
         return new SearchCreatedEvent(
             aggregateId,
             eventId,
             occurredOn,
-            (String) body.get("hotelId"),
-            (String) body.get("checkIn"),
-            (String) body.get("checkOut"),
+            (String) map.get("hotelId"),
+            (String) map.get("checkIn"),
+            (String) map.get("checkOut"),
             (String) body.get("hash"),
-            Arrays.stream(((Integer[]) body.get("ages"))).toList()
+            Arrays.stream(((Integer[]) map.get("ages"))).toList()
         );
     }
 
