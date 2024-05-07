@@ -1,10 +1,10 @@
-spring:
-  kafka:
-    bootstrap-servers: ${spring.embedded.kafka.brokers}
-    consumer:
-      group-id: test-group
-      auto-offset-reset: earliest
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-
+#spring:
+#  kafka:
+#    bootstrap-servers: ${spring.embedded.kafka.brokers}
+#    consumer:
+#      group-id: test
+#      auto-offset-reset: earliest
+#    producer:
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#

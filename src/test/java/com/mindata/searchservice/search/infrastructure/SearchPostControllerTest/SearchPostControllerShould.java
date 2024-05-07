@@ -51,7 +51,7 @@ public abstract class SearchPostControllerShould {
         // Check status code is 201 created: ✓
         mockMvc.perform(post("/search").content(json).contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpectAll(
                 jsonPath("$.searchId").value(uuid),
-                status().isProcessing()
+                status().isOk()
         );
         return command;
     }

@@ -25,7 +25,7 @@ public final class SearchPostController extends ApiController {
     }
 
     @PostMapping("/search")
-    public ResponseEntity<SearchResponse> search(@RequestBody RequestSearch request) {
+    public SearchResponse search(@RequestBody RequestSearch request) {
         final String searchId = uuidGenerator.generate();
 
         this.dispatch(new SearchCommand(
@@ -36,9 +36,8 @@ public final class SearchPostController extends ApiController {
             request.ages()
         ));
 
-        return new ResponseEntity<>(new SearchResponse(searchId), HttpStatus.PROCESSING);
+        return new SearchResponse(searchId);
     }
-
 
     @Override
     public HashMap<Class<? extends DomainError>, HttpStatus> errorMapping() {

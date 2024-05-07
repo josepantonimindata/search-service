@@ -1,4 +1,16 @@
 package com.mindata.searchservice.search.infrastructure;
 
-public record SearchResponse(String searchId) {
+import com.fasterxml.jackson.annotation.JsonGetter;
+
+public class SearchResponse {
+    private String searchId;
+
+    public SearchResponse(String searchId) {
+        this.searchId = searchId;
+    }
+
+    @JsonGetter
+    public String searchId() {
+        return searchId;
+    }
 }
