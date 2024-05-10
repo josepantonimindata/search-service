@@ -1,7 +1,9 @@
 package com.mindata.searchservice.search.infrastructure;
 
 import com.mindata.searchservice.search.application.SearchCommand;
+import com.mindata.searchservice.search.domain.InvalidSearchArgumentException;
 import com.mindata.searchservice.shared.domain.DomainError;
+import com.mindata.searchservice.shared.domain.InvalidDateFormatException;
 import com.mindata.searchservice.shared.domain.UuidGenerator;
 import com.mindata.searchservice.shared.domain.bus.command.CommandBus;
 import com.mindata.searchservice.shared.domain.bus.query.QueryBus;
@@ -41,6 +43,9 @@ public final class SearchPostController extends ApiController {
 
     @Override
     public HashMap<Class<? extends DomainError>, HttpStatus> errorMapping() {
-        return new HashMap<>();
+        return new HashMap<>(){{
+            put(InvalidDateFormatException.class, HttpStatus.BAD_REQUEST);
+            put(InvalidSearchArgumentException.class, HttpStatus.BAD_REQUEST);
+        }};
     }
 }

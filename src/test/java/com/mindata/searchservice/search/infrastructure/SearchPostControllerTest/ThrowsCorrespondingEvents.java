@@ -27,6 +27,8 @@ public final class ThrowsCorrespondingEvents extends SearchPostControllerShould 
 
 
 
+
+
     private void shouldHavePublished(List<DomainEvent> domainEvents) {
         verify(eventBus, atLeastOnce()).publish(domainEvents);
     }

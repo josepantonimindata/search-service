@@ -48,7 +48,7 @@ public final class SearchCommandMother {
                 "invalid",
                 "Stuff",
                 "for",
-                null
+                List.of(20,30)
         );
     }
 }

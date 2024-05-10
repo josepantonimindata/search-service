@@ -1,39 +1,17 @@
 package com.mindata.searchservice.search.domain;
 
-import java.util.Objects;
+import com.mindata.searchservice.shared.domain.InvalidDateFormatException;
+import com.mindata.searchservice.shared.domain.StringValueObject;
 
-public final class HotelId {
-
-    private final String value;
-
+public final class HotelId extends StringValueObject {
     public HotelId(String value) {
+        super(value);
         ensureValueIsDefined(value);
-
-        this.value = value;
     }
 
     private void ensureValueIsDefined(String value) {
         if (value == null || value.isEmpty()) {
-            throw new IllegalArgumentException("Value cannot be null or empty");
+            throw new InvalidSearchArgumentException("HotellId can not be null");
         }
     }
-
-    public String value() {
-        return value;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HotelId hotelId = (HotelId) o;
-        return Objects.equals(value, hotelId.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(value);
-    }
-
 }

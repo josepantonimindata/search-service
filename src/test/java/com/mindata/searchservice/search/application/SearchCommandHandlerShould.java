@@ -2,9 +2,8 @@ package com.mindata.searchservice.search.application;
 
 import com.mindata.searchservice.search.domain.SearchCreatedEvent;
 import com.mindata.searchservice.search.domain.SearchCreatedEventMother;
-import com.mindata.searchservice.search.domain.SearchIdMother;
 import com.mindata.searchservice.search.domain.SearchMother;
-import com.mindata.searchservice.shared.domain.bus.event.DomainEvent;
+import com.mindata.searchservice.shared.domain.DomainError;
 import com.mindata.searchservice.shared.infrastructure.UnitTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,6 +37,6 @@ public final class SearchCommandHandlerShould extends UnitTestCase {
     @Test
     public void shouldThrowAnErrorIfTheCommandContainsInvalidData() {
         SearchCommand command = SearchCommandMother.randomInvalid();
-        assertThrows(IllegalArgumentException.class, () -> handler.handle(command));
+        assertThrows(DomainError.class , () -> handler.handle(command));
     }
 }

@@ -27,12 +27,13 @@ public final class Search extends AggregateRoot {
         var searchCheckOut = new CheckOut(checkOut);
 
         if (searchAges == null) {
-            throw new IllegalArgumentException("Invalid ages, MUST be NOT null");
+            throw new InvalidSearchArgumentException("Invalid ages, MUST be NOT null");
         }
 
         if (searchCheckIn.compareTo(searchCheckOut) > 0) {
-            throw new IllegalArgumentException("Checkout can not be before checkin");
+            throw new InvalidSearchArgumentException("Checkout can not be before checkin");
         }
+
         var id = new SearchId(searchId);
         var hotelId = new HotelId(searchHotelId);
         var ages = searchAges.stream().map(Age::new).toList();
