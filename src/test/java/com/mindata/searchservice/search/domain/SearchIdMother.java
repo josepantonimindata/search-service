@@ -1,5 +1,6 @@
 package com.mindata.searchservice.search.domain;
 
+import com.mindata.searchservice.lib.search.domain.SearchId;
 import com.mindata.searchservice.shared.domain.UuidMother;
 
 public final class SearchIdMother {

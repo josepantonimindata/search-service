@@ -1,5 +1,6 @@
 package com.mindata.searchservice.search.domain;
 
+import com.mindata.searchservice.lib.search.domain.HotelId;
 import com.mindata.searchservice.shared.domain.UuidMother;
 
 public final class HotelIdMother {

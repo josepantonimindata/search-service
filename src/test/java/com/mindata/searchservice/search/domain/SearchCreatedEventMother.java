@@ -1,5 +1,9 @@
 package com.mindata.searchservice.search.domain;
 
+import com.mindata.searchservice.lib.search.domain.Age;
+import com.mindata.searchservice.lib.search.domain.Search;
+import com.mindata.searchservice.lib.search.domain.SearchCreatedEvent;
+
 import java.util.List;
 import java.util.Random;
 

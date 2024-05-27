@@ -1,7 +1,8 @@
 package com.mindata.searchservice.search.domain;
 
 
-import com.mindata.searchservice.shared.domain.InvalidDateFormatException;
+import com.mindata.searchservice.lib.search.domain.*;
+import com.mindata.searchservice.lib.shared.domain.InvalidDateFormatException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

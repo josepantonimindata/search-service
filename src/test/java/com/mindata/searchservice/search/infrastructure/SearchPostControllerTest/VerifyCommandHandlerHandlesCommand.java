@@ -1,6 +1,6 @@
 package com.mindata.searchservice.search.infrastructure.SearchPostControllerTest;
 
-import com.mindata.searchservice.search.application.SearchCommandHandler;
+import com.mindata.searchservice.lib.search.application.SearchCommandHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 

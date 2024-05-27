@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mindata</groupId>
-    <artifactId>SearchService</artifactId>
+    <artifactId>search-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SearchService</name>
     <description>SearchService</description>

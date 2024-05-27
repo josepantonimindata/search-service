@@ -1,5 +1,7 @@
 package com.mindata.searchservice.search.domain;
 
+import com.mindata.searchservice.lib.search.domain.CheckIn;
+
 import java.time.LocalDate;
 import java.util.Random;
 

@@ -1,8 +1,8 @@
 package com.mindata.searchservice.search.infrastructure.SearchPostControllerTest;
-import com.mindata.searchservice.search.application.SearchCommand;
+import com.mindata.searchservice.lib.search.application.SearchCommand;
 import com.mindata.searchservice.search.application.SearchCommandMother;
-import com.mindata.searchservice.shared.domain.Utils;
-import com.mindata.searchservice.shared.domain.UuidGenerator;
+import com.mindata.searchservice.lib.shared.domain.Utils;
+import com.mindata.searchservice.lib.shared.domain.UuidGenerator;
 import com.mindata.searchservice.shared.domain.UuidMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;

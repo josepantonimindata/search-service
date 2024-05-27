@@ -1,6 +1,7 @@
 package com.mindata.searchservice.search.domain;
 
-import com.mindata.searchservice.search.application.SearchCommand;
+import com.mindata.searchservice.lib.search.application.SearchCommand;
+import com.mindata.searchservice.lib.search.domain.Search;
 
 import java.util.List;
 

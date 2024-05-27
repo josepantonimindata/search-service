@@ -1,5 +1,7 @@
 package com.mindata.searchservice.search.application;
 
+import com.mindata.searchservice.lib.search.application.SearchCommand;
+import com.mindata.searchservice.lib.search.domain.Age;
 import com.mindata.searchservice.search.domain.*;
 
 import java.util.List;

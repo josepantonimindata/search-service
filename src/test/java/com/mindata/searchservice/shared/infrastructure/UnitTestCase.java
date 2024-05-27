@@ -1,11 +1,11 @@
 package com.mindata.searchservice.shared.infrastructure;
 
-import com.mindata.searchservice.shared.domain.UuidGenerator;
-import com.mindata.searchservice.shared.domain.bus.event.DomainEvent;
-import com.mindata.searchservice.shared.domain.bus.event.EventBus;
-import com.mindata.searchservice.shared.domain.bus.query.Query;
-import com.mindata.searchservice.shared.domain.bus.query.QueryBus;
-import com.mindata.searchservice.shared.domain.bus.query.Response;
+import com.mindata.searchservice.lib.shared.domain.UuidGenerator;
+import com.mindata.searchservice.lib.shared.domain.bus.event.DomainEvent;
+import com.mindata.searchservice.lib.shared.domain.bus.event.EventBus;
+import com.mindata.searchservice.lib.shared.domain.bus.query.Query;
+import com.mindata.searchservice.lib.shared.domain.bus.query.QueryBus;
+import com.mindata.searchservice.lib.shared.domain.bus.query.Response;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.Collections;

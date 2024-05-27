@@ -1,9 +1,12 @@
 package com.mindata.searchservice.search.application;
 
-import com.mindata.searchservice.search.domain.SearchCreatedEvent;
+import com.mindata.searchservice.lib.search.application.NewSearchService;
+import com.mindata.searchservice.lib.search.application.SearchCommand;
+import com.mindata.searchservice.lib.search.application.SearchCommandHandler;
+import com.mindata.searchservice.lib.search.domain.SearchCreatedEvent;
 import com.mindata.searchservice.search.domain.SearchCreatedEventMother;
 import com.mindata.searchservice.search.domain.SearchMother;
-import com.mindata.searchservice.shared.domain.DomainError;
+import com.mindata.searchservice.lib.shared.domain.DomainError;
 import com.mindata.searchservice.shared.infrastructure.UnitTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

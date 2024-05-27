@@ -1,5 +1,7 @@
 package com.mindata.searchservice.search.domain;
 
+import com.mindata.searchservice.lib.search.domain.Age;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

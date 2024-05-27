@@ -1,8 +1,8 @@
 package com.mindata.searchservice.search.infrastructure.SearchPostControllerTest;
 
 import com.mindata.searchservice.search.application.SearchCommandMother;
-import com.mindata.searchservice.shared.domain.Utils;
-import com.mindata.searchservice.shared.domain.bus.event.EventBus;
+import com.mindata.searchservice.lib.shared.domain.Utils;
+import com.mindata.searchservice.lib.shared.domain.bus.event.EventBus;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
