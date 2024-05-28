@@ -1,18 +1,25 @@
 package com.mindata.searchservice.lib.shared.infrastructure.bus.event;
 
 
-import com.mindata.searchservice.lib.shared.domain.Utils;
 import com.mindata.searchservice.lib.shared.domain.bus.event.DomainEvent;
+import com.mindata.searchservice.lib.shared.domain.services.JsonService;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.HashMap;
 
+@Component
 public final class DomainEventJsonSerializer {
-    public static String serialize(DomainEvent domainEvent) {
+    
+    private final JsonService jsonService;
+    
+    public DomainEventJsonSerializer(JsonService jsonService) {this.jsonService = jsonService;}
+    
+    public String serialize(DomainEvent domainEvent) {
         HashMap<String, Serializable> attributes = domainEvent.toPrimitives();
         attributes.put("id", domainEvent.aggregateId());
         
-        return Utils.jsonEncode(new HashMap<>() {{
+        return jsonService.jsonEncode(new HashMap<>() {{
             put("data", new HashMap<String, Serializable>() {{
                 put("id", domainEvent.eventId());
                 put("type", domainEvent.eventName());
@@ -20,6 +27,6 @@ public final class DomainEventJsonSerializer {
                 put("attributes", attributes);
             }});
             put("meta", new HashMap<String, Serializable>());
-        }});
+        }}).get();
     }
 }

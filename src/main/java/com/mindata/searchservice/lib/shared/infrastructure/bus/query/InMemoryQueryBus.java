@@ -4,6 +4,7 @@ import com.mindata.searchservice.lib.shared.domain.bus.query.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+@SuppressWarnings("rawtypes")
 @Service
 public final class InMemoryQueryBus implements QueryBus {
     private final QueryHandlersInformation information;

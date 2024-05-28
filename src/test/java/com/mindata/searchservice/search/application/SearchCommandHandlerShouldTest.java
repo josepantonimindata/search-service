@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @SpringBootTest
-public final class SearchCommandHandlerShould extends UnitTestCase {
+public final class SearchCommandHandlerShouldTest extends UnitTestCase {
     private SearchCommandHandler handler;
 
     @BeforeEach

@@ -4,6 +4,7 @@ import com.mindata.searchservice.lib.shared.domain.exceptions.DateTimeInvalidExc
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
@@ -15,7 +16,7 @@ import static com.mindata.searchservice.lib.shared.domain.services.GuardUtils.is
  * This abstract class represents a DateTime value object.
  */
 public abstract class DateTimeValueObject implements Comparable<DateTimeValueObject> {
-    protected final LocalDateTime value;
+    protected final LocalDate value;
     
     /**
      *
@@ -32,9 +33,9 @@ public abstract class DateTimeValueObject implements Comparable<DateTimeValueObj
      * @return the parsed LocalDateTime representation of the value
      * @throws DateTimeInvalidException if the value is not a valid LocalDateTime
      */
-    private LocalDateTime ensureValidDateTime(@NonNull String value) {
+    private LocalDate ensureValidDateTime(@NonNull String value) {
         try {
-            return LocalDateTime.parse(value);
+            return LocalDate.parse(value);
         } catch (DateTimeParseException e) {
             throw new DateTimeInvalidException(value);
         }

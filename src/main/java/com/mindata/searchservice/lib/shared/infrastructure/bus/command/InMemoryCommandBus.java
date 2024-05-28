@@ -7,6 +7,7 @@ import com.mindata.searchservice.lib.shared.domain.bus.command.CommandHandler;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+@SuppressWarnings("rawtypes")
 @Component
 public final class InMemoryCommandBus implements CommandBus {
     private final CommandHandlersInformation information;

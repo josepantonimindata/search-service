@@ -1,7 +1,6 @@
 package com.mindata.searchservice.lib.shared.infrastructure.spring;
 
 import com.mindata.searchservice.lib.shared.domain.DomainError;
-import com.mindata.searchservice.lib.shared.domain.Utils;
 import com.mindata.searchservice.lib.shared.domain.bus.command.CommandHandlerExecutionError;
 import com.mindata.searchservice.lib.shared.domain.bus.query.QueryHandlerExecutionError;
 import jakarta.servlet.*;
@@ -85,7 +84,7 @@ public final class ApiExceptionMiddleware implements Filter {
             return ((DomainError) error).errorCode();
         }
         
-        return Utils.toSnake(error.getClass().toString());
+        return error.getClass().toString();
     }
     
     private int statusFor(HashMap<Class<? extends DomainError>, HttpStatus> errorMapping, Throwable error) {

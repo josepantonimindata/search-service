@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public final class SearchCommandHandler implements CommandHandler<SearchCommand> {
-    private NewSearchService newSearchService;
+    private final NewSearchService newSearchService;
 
     public SearchCommandHandler(NewSearchService newSearchService) {
         this.newSearchService = newSearchService;

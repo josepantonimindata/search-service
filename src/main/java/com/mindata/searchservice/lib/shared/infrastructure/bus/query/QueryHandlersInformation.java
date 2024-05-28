@@ -10,6 +10,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.Set;
 
+@SuppressWarnings("rawtypes")
 @Service
 public final class QueryHandlersInformation {
     HashMap<Class<? extends Query>, Class<? extends QueryHandler>> indexedQueryHandlers;

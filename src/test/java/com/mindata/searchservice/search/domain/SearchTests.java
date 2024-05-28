@@ -4,6 +4,8 @@ package com.mindata.searchservice.search.domain;
 import com.mindata.searchservice.lib.search.domain.*;
 import com.mindata.searchservice.lib.search.domain.exceptions.InvalidSearchArgumentException;
 import com.mindata.searchservice.lib.shared.domain.exceptions.DateTimeInvalidException;
+import com.mindata.searchservice.lib.shared.domain.exceptions.IdentifierInvalidException;
+import com.mindata.searchservice.lib.shared.domain.exceptions.NullArgumentException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -64,7 +66,7 @@ public class SearchTests {
                 YESTERDAY,
                 List.of(1, 20, 30, 13, 4)
             )),
-            () -> assertThrows(InvalidSearchArgumentException.class, () -> Search.create(
+            () -> assertThrows(IdentifierInvalidException.class, () -> Search.create(
                 "1",
                 "1",
                 TODAY,
@@ -92,28 +94,28 @@ public class SearchTests {
                 TOMORROW,
                 List.of(1, 20, 30, 13, 4)
             )),
-            () -> assertThrows(InvalidSearchArgumentException.class, () -> Search.create(
+            () -> assertThrows(NullArgumentException.class, () -> Search.create(
                 "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
                 null,
                 TODAY,
                 TOMORROW,
                 List.of(1, 20, 30, 13, 4)
             )),
-            () -> assertThrows(InvalidSearchArgumentException.class, () -> Search.create(
+            () -> assertThrows(NullArgumentException.class, () -> Search.create(
                 null,
                 "null",
                 TODAY,
                 TOMORROW,
                 List.of(1, 20, 30, 13, 4)
             )),
-            () -> assertThrows(DateTimeInvalidException.class, () -> Search.create(
+            () -> assertThrows(NullArgumentException.class, () -> Search.create(
                 "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
                 "1",
                 null,
                 TOMORROW,
                 List.of(1, 20, 30, 13, 4)
             )),
-            () -> assertThrows(DateTimeInvalidException.class, () -> Search.create(
+            () -> assertThrows(NullArgumentException.class, () -> Search.create(
                 "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
                 "1",
                 TODAY,

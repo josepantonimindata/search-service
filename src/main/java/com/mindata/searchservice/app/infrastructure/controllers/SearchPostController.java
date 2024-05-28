@@ -12,7 +12,6 @@ import com.mindata.searchservice.lib.shared.domain.exceptions.IntInvalidExceptio
 import com.mindata.searchservice.lib.shared.domain.exceptions.NullArgumentException;
 import com.mindata.searchservice.lib.shared.infrastructure.spring.ApiController;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

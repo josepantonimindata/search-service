@@ -10,6 +10,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.Set;
 
+@SuppressWarnings("rawtypes")
 @Component
 public final class CommandHandlersInformation {
     HashMap<Class<? extends Command>, Class<? extends CommandHandler>> indexedCommandHandlers;

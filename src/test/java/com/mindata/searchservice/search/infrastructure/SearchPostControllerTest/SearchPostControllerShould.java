@@ -1,7 +1,7 @@
 package com.mindata.searchservice.search.infrastructure.SearchPostControllerTest;
 import com.mindata.searchservice.lib.search.application.SearchCommand;
+import com.mindata.searchservice.lib.shared.domain.services.JsonService;
 import com.mindata.searchservice.search.application.SearchCommandMother;
-import com.mindata.searchservice.lib.shared.domain.Utils;
 import com.mindata.searchservice.lib.shared.domain.UuidGenerator;
 import com.mindata.searchservice.shared.domain.UuidMother;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,23 +29,26 @@ public abstract class SearchPostControllerShould {
     protected UuidGenerator uuidGenerator;
 
     protected String uuid;
-
+    
+    protected final JsonService jsonService;
+    
+    protected SearchPostControllerShould(JsonService jsonService) {this.jsonService = jsonService;}
+    
     @BeforeEach
     public void setUp() {
         uuid = UuidMother.random();
         when(uuidGenerator.generate()).thenReturn(uuid);
     }
 
-
     protected SearchCommand getCommandAndMakeRequest() throws Exception {
         var command = SearchCommandMother.randomWithId(uuid);
 
-        var json = Utils.jsonEncode(new HashMap<>() {{
+        var json = jsonService.jsonEncode(new HashMap<>() {{
             put("hotelId", command.hotelId());
             put("checkIn", command.checkIn());
             put("checkOut", command.checkOut());
             put("ages", command.ages().toArray());
-        }});
+        }}).get();
 
         // Check uuid returning is correct: ✓
         // Check status code is 201 created: ✓

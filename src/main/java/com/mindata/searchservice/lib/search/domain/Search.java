@@ -3,7 +3,6 @@ package com.mindata.searchservice.lib.search.domain;
 import com.mindata.searchservice.lib.search.domain.events.SearchCreatedEvent;
 import com.mindata.searchservice.lib.search.domain.exceptions.InvalidSearchArgumentException;
 import com.mindata.searchservice.lib.shared.domain.AggregateRoot;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +19,7 @@ public final class Search extends AggregateRoot {
         this.hotelId = hotelId;
         this.checkOut = checkOut;
         this.checkIn = checkIn;
-        this.ages = validateAges(ages);;
+        this.ages = validateAges(ages);
     }
     
     private List<Age> validateAges(List<Age> ages) {

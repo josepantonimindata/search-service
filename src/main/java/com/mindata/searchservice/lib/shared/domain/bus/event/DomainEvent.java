@@ -1,12 +1,13 @@
 package com.mindata.searchservice.lib.shared.domain.bus.event;
 
 
-import com.mindata.searchservice.lib.shared.domain.Utils;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
+
+import static com.mindata.searchservice.lib.shared.domain.services.DateTimeUtils.dateToString;
 
 public abstract class DomainEvent {
     private String aggregateId;
@@ -16,7 +17,7 @@ public abstract class DomainEvent {
     public DomainEvent(String aggregateId) {
         this.aggregateId = aggregateId;
         this.eventId = UUID.randomUUID().toString();
-        this.occurredOn = Utils.dateToString(LocalDateTime.now());
+        this.occurredOn = dateToString(LocalDateTime.now());
     }
     
     public DomainEvent(String aggregateId, String eventId, String occurredOn) {
