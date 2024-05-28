@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 
 public class IntInvalidException extends DomainError {
     
-    public static final String ERROR_CODE = "400";
+    public static final String ERROR_CODE = "422";
     
     public IntInvalidException(@NonNull String value) {
         super(ERROR_CODE, "Identifier value is not a valid Natural Number - value : " + value);

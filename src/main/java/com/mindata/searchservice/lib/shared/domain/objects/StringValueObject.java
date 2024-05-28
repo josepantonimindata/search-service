@@ -1,12 +1,12 @@
 package com.mindata.searchservice.lib.shared.domain.objects;
 
-import me.team.usercrud.shared.domain.exceptions.NullArgumentException;
+import com.mindata.searchservice.lib.shared.domain.exceptions.NullArgumentException;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
 import java.util.Objects;
 
-import static me.team.usercrud.shared.domain.services.GuardUtils.isNotNull;
+import static com.mindata.searchservice.lib.shared.domain.services.GuardUtils.isNotNull;
 
 
 public abstract class StringValueObject {

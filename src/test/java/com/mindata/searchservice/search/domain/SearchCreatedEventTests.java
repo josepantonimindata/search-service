@@ -1,6 +1,6 @@
 package com.mindata.searchservice.search.domain;
 
-import com.mindata.searchservice.lib.search.domain.SearchCreatedEvent;
+import com.mindata.searchservice.lib.search.domain.events.SearchCreatedEvent;
 import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;

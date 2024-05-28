@@ -1,4 +1,4 @@
-package com.mindata.searchservice.lib.search.domain;
+package com.mindata.searchservice.lib.search.domain.events;
 
 import com.mindata.searchservice.lib.shared.domain.bus.event.DomainEvent;
 

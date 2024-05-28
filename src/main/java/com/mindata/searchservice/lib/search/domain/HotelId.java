@@ -1,16 +1,18 @@
 package com.mindata.searchservice.lib.search.domain;
 
-import com.mindata.searchservice.lib.shared.domain.StringValueObject;
+
+import com.mindata.searchservice.lib.search.domain.exceptions.InvalidSearchArgumentException;
+import com.mindata.searchservice.lib.shared.domain.objects.StringValueObject;
 
 public final class HotelId extends StringValueObject {
     public HotelId(String value) {
         super(value);
-        ensureValueIsDefined(value);
+        isNotEmpty(value);
     }
 
-    private void ensureValueIsDefined(String value) {
-        if (value == null || value.isEmpty()) {
-            throw new InvalidSearchArgumentException("HotellId can not be null");
+    private void isNotEmpty(String value) {
+        if (value.isEmpty()) {
+            throw new InvalidSearchArgumentException("HotelId can not be null");
         }
     }
 }

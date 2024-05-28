@@ -1,5 +1,7 @@
 package com.mindata.searchservice.lib.shared.domain.objects;
 
+import com.mindata.searchservice.lib.shared.domain.exceptions.IdentifierInvalidException;
+import com.mindata.searchservice.lib.shared.domain.exceptions.NullArgumentException;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 

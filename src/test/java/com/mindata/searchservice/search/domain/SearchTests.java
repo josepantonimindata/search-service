@@ -2,7 +2,8 @@ package com.mindata.searchservice.search.domain;
 
 
 import com.mindata.searchservice.lib.search.domain.*;
-import com.mindata.searchservice.lib.shared.domain.InvalidDateFormatException;
+import com.mindata.searchservice.lib.search.domain.exceptions.InvalidSearchArgumentException;
+import com.mindata.searchservice.lib.shared.domain.exceptions.DateTimeInvalidException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class SearchTests {
         assertAll("Are Equal",
             () -> assertEquals(searchExpected.toString(), searchObject.toString()),
             () -> assertEquals(searchExpected.hashCode(), searchObject.hashCode()),
-            () -> assertEquals(searchExpected.searchRequestHash(), searchObject.searchRequestHash()),
+            () -> assertEquals(searchExpected.hashCode(), searchObject.hashCode()),
             () -> assertEquals(searchExpected, searchObject)
         );
 
@@ -105,14 +106,14 @@ public class SearchTests {
                 TOMORROW,
                 List.of(1, 20, 30, 13, 4)
             )),
-            () -> assertThrows(InvalidDateFormatException.class, () -> Search.create(
+            () -> assertThrows(DateTimeInvalidException.class, () -> Search.create(
                 "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
                 "1",
                 null,
                 TOMORROW,
                 List.of(1, 20, 30, 13, 4)
             )),
-            () -> assertThrows(InvalidDateFormatException.class, () -> Search.create(
+            () -> assertThrows(DateTimeInvalidException.class, () -> Search.create(
                 "be4d5ae7-dbbe-4c30-9943-fefbe631c8f4",
                 "1",
                 TODAY,

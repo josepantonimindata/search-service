@@ -8,7 +8,8 @@ import org.springframework.lang.Nullable;
 import java.util.Optional;
 
 public class NullArgumentException extends DomainError {
-    public static final String ERROR_CODE = "400";
+    public static final String ERROR_CODE = "422";
+    
     private final Optional<String> field;
     
     public NullArgumentException() {
