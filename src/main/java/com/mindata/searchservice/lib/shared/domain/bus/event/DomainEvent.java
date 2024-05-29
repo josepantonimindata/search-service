@@ -1,7 +1,6 @@
 package com.mindata.searchservice.lib.shared.domain.bus.event;
 
 
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;

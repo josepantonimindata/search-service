@@ -54,7 +54,7 @@ public final class Search extends AggregateRoot {
             search.hotelId.value(),
             search.checkIn.value(),
             search.checkOut.value(),
-            Integer.toString(search.hashCode()),
+            Integer.toString(search.hashSearch()),
             search.ages.stream().map(Age::value).toList()));
         
         return search;
@@ -104,5 +104,9 @@ public final class Search extends AggregateRoot {
                ", checkOut=" + checkOut +
                ", ages=" + ages +
                '}';
+    }
+    
+    public int hashSearch() {
+        return Objects.hash(hotelId, checkIn, checkOut, ages);
     }
 }

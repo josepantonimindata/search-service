@@ -14,7 +14,7 @@ public final class SearchCreatedEvent extends DomainEvent {
     private final String checkOut;
     private final String hash;
     private final List<Integer> ages;
-
+    
     public SearchCreatedEvent(
         String aggregateId,
         String hotelId,
@@ -24,14 +24,14 @@ public final class SearchCreatedEvent extends DomainEvent {
         List<Integer> ages
     ) {
         super(aggregateId);
-
+        
         this.hotelId = hotelId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.hash = hash;
         this.ages = ages;
     }
-
+    
     private SearchCreatedEvent(
         String aggregateId,
         String eventId,
@@ -43,23 +43,23 @@ public final class SearchCreatedEvent extends DomainEvent {
         List<Integer> ages
     ) {
         super(aggregateId, eventId, occurredOn);
-
+        
         this.hotelId = hotelId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.hash = hash;
         this.ages = ages;
     }
-
+    
     @Override
     public String eventName() {
         return "hotel_availability_searches";
     }
-
+    
     @Override
     public HashMap<String, Serializable> toPrimitives() {
         return new HashMap<>() {{
-            put("search", new HashMap<>(){{
+            put("search", new HashMap<>() {{
                 put("hotelId", hotelId);
                 put("checkIn", checkIn);
                 put("checkOut", checkOut);
@@ -68,7 +68,7 @@ public final class SearchCreatedEvent extends DomainEvent {
             put("hash", hash);
         }};
     }
-
+    
     @Override
     public DomainEvent fromPrimitives(
         String aggregateId,
@@ -76,7 +76,7 @@ public final class SearchCreatedEvent extends DomainEvent {
         String eventId,
         String occurredOn
     ) {
-        var map = (HashMap<String, Serializable>)  body.get("search");
+        var map = (HashMap<String, Serializable>) body.get("search");
         return new SearchCreatedEvent(
             aggregateId,
             eventId,
@@ -88,15 +88,17 @@ public final class SearchCreatedEvent extends DomainEvent {
             Arrays.stream(((Integer[]) map.get("ages"))).toList()
         );
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SearchCreatedEvent that = (SearchCreatedEvent) o;
-        return Objects.equals(hotelId, that.hotelId) && Objects.equals(checkIn, that.checkIn) && Objects.equals(checkOut, that.checkOut) && Objects.equals(hash, that.hash) && Objects.equals(ages, that.ages);
+        return Objects.equals(hotelId, that.hotelId) && Objects.equals(checkIn,
+            that.checkIn) && Objects.equals(checkOut, that.checkOut) && Objects.equals(hash,
+            that.hash) && Objects.equals(ages, that.ages);
     }
-
+    
     @Override
     public int hashCode() {
         return Objects.hash(hotelId, checkIn, checkOut, hash, ages);

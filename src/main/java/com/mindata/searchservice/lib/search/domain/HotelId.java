@@ -9,7 +9,7 @@ public final class HotelId extends StringValueObject {
         super(value);
         isNotEmpty(value);
     }
-
+    
     private void isNotEmpty(String value) {
         if (value.isEmpty()) {
             throw new InvalidSearchArgumentException("HotelId can not be null");

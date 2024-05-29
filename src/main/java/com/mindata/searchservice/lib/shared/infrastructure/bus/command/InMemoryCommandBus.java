@@ -1,9 +1,9 @@
 package com.mindata.searchservice.lib.shared.infrastructure.bus.command;
 
-import com.mindata.searchservice.lib.shared.domain.bus.command.CommandHandlerExecutionError;
 import com.mindata.searchservice.lib.shared.domain.bus.command.Command;
 import com.mindata.searchservice.lib.shared.domain.bus.command.CommandBus;
 import com.mindata.searchservice.lib.shared.domain.bus.command.CommandHandler;
+import com.mindata.searchservice.lib.shared.domain.bus.command.CommandHandlerExecutionError;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
